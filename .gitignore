@@ -1,0 +1,8 @@
+*.bak
+*.orig
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.tmp
