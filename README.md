@@ -63,6 +63,18 @@ Este monorepositorio centraliza la suite completa y verificada de **Deadly Boss 
 
 ---
 
+## 💻 Comandos de Barra (Slash Commands)
+
+| Comando | Acción |
+|---|---|
+| `/dbm` | Abre el panel gráfico de configuración de Deadly Boss Mods. |
+| `/dbm ver` | Comprueba y lista las versiones de DBM instaladas por los miembros de la banda. |
+| `/dbm pull <segundos>` | Inicia una cuenta regresiva oficial visible para toda la banda antes de iniciar el combate. |
+| `/dbm break <minutos>` | Inicia un temporizador de descanso o pausa para la banda. |
+| `/dbm broadcast timer <seg> <texto>` | Transmite una barra de temporizador personalizada a toda la banda. |
+
+---
+
 ## 📥 Instalación en el Cliente WoW
 
 Para instalar la suite en tu cliente WoW Perú:
@@ -73,3 +85,10 @@ Para instalar la suite en tu cliente WoW Perú:
    ```
 3. Verifica que cada carpeta (`DBM-Core`, `DBM-Icecrown`, etc.) quede como carpeta hermana dentro de `Interface/AddOns/`.
 4. Inicia el juego y asegúrate de marcar la casilla *"Cargar accesorios antiguos"* en la pantalla de selección de personajes.
+
+---
+
+## 📜 Licencia y Atribución
+
+Distribuido bajo la licencia [Creative Commons BY-NC-SA 3.0](LICENSE).  
+Para consultar los detalles de autoría original de Tandanu y Nitram, consulta el archivo [NOTICE.md](NOTICE.md).
