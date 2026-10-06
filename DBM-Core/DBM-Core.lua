@@ -1075,20 +1075,28 @@ do
 	function DBM:RAID_ROSTER_UPDATE()
 		if GetNumRaidMembers() >= 1 then
 			local playerWithHigherVersionPromoted = false
+			local hasIncompleteRoster = false
 			for i = 1, GetNumRaidMembers() do
 				local name, rank, subgroup, _, _, fileName = GetRaidRosterInfo(i)
-				if (not raid[name]) and inRaid then
-					fireEvent("raidJoin", name)
+				if not name or name == "" then
+					name = UnitName("raid"..i)
 				end
-				raid[name] = raid[name] or {}
-				raid[name].name = name
-				raid[name].rank = rank
-				raid[name].subgroup = subgroup
-				raid[name].class = fileName
-				raid[name].id = "raid"..i
-				raid[name].updated = true
-				if not playerWithHigherVersionPromoted and rank >= 1 and raid[name].version and raid[name].version > tonumber(DBM.Version) then
-					playerWithHigherVersionPromoted = true
+				if name and name ~= "" then
+					if (not raid[name]) and inRaid then
+						fireEvent("raidJoin", name)
+					end
+					raid[name] = raid[name] or {}
+					raid[name].name = name
+					raid[name].rank = rank or 0
+					raid[name].subgroup = subgroup or 1
+					raid[name].class = fileName or "UNKNOWN"
+					raid[name].id = "raid"..i
+					raid[name].updated = true
+					if not playerWithHigherVersionPromoted and (rank or 0) >= 1 and raid[name].version and raid[name].version > tonumber(DBM.Version) then
+						playerWithHigherVersionPromoted = true
+					end
+				else
+					hasIncompleteRoster = true
 				end
 			end
 			enableIcons = not playerWithHigherVersionPromoted
@@ -1096,20 +1104,33 @@ do
 				inRaid = true
 				sendSync("DBMv4-Ver", "Hi!")
 				self:Schedule(2, DBM.RequestTimers, DBM)
-				fireEvent("raidJoin", UnitName("player"))
+				local playerName = UnitName("player")
+				if playerName then
+					fireEvent("raidJoin", playerName)
+				end
 			end
-			for i, v in pairs(raid) do
-				if not v.updated then
-					raid[i] = nil
-					fireEvent("raidLeave", i)
-				else
+			if hasIncompleteRoster then
+				self:Schedule(0.5, DBM.RAID_ROSTER_UPDATE, DBM)
+				for _, v in pairs(raid) do
 					v.updated = nil
+				end
+			else
+				for i, v in pairs(raid) do
+					if not v.updated then
+						raid[i] = nil
+						fireEvent("raidLeave", i)
+					else
+						v.updated = nil
+					end
 				end
 			end
 		else
 			inRaid = false
 			enableIcons = true
-			fireEvent("raidLeave", UnitName("player"))
+			local playerName = UnitName("player")
+			if playerName then
+				fireEvent("raidLeave", playerName)
+			end
 		end
 	end
 
@@ -1120,8 +1141,12 @@ do
 				inRaid = true
 				sendSync("DBMv4-Ver", "Hi!")
 				self:Schedule(2, DBM.RequestTimers, DBM)
-				fireEvent("partyJoin", UnitName("player"))
+				local playerName = UnitName("player")
+				if playerName then
+					fireEvent("partyJoin", playerName)
+				end
 			end
+			local hasIncompleteParty = false
 			for i = 0, GetNumPartyMembers() do
 				local id
 				if (i == 0) then
@@ -1130,30 +1155,41 @@ do
 					id = "party"..i
 				end
 				local name, server = UnitName(id)
-				local rank, _, fileName = UnitIsPartyLeader(id), UnitClass(id)
-				if server and server ~= ""  then
-					name = name.."-"..server
-				end
-				if (not raid[name]) and inRaid then
-					fireEvent("partyJoin", name)
-				end
-				raid[name] = raid[name] or {}
-				raid[name].name = name
-				if rank then
-					raid[name].rank = 2
+				if name and name ~= "" then
+					local rank, _, fileName = UnitIsPartyLeader(id), UnitClass(id)
+					if server and server ~= ""  then
+						name = name.."-"..server
+					end
+					if (not raid[name]) and inRaid then
+						fireEvent("partyJoin", name)
+					end
+					raid[name] = raid[name] or {}
+					raid[name].name = name
+					if rank then
+						raid[name].rank = 2
+					else
+						raid[name].rank = 0
+					end
+					raid[name].class = fileName or "UNKNOWN"
+					raid[name].id = id
+					raid[name].updated = true
 				else
-					raid[name].rank = 0
+					hasIncompleteParty = true
 				end
-				raid[name].class = fileName
-				raid[name].id = id
-				raid[name].updated = true
 			end
-			for i, v in pairs(raid) do
-				if not v.updated then
-					raid[i] = nil
-					fireEvent("partyLeave", i)
-				else
+			if hasIncompleteParty then
+				self:Schedule(0.5, DBM.PARTY_MEMBERS_CHANGED, DBM)
+				for _, v in pairs(raid) do
 					v.updated = nil
+				end
+			else
+				for i, v in pairs(raid) do
+					if not v.updated then
+						raid[i] = nil
+						fireEvent("partyLeave", i)
+					else
+						v.updated = nil
+					end
 				end
 			end
 		else
@@ -1168,22 +1204,22 @@ do
 
 	function DBM:GetRaidRank(name)
 		name = name or UnitName("player")
-		return (raid[name] and raid[name].rank) or 0
+		return (name and raid[name] and raid[name].rank) or 0
 	end
 
 	function DBM:GetRaidSubgroup(name)
 		name = name or UnitName("player")
-		return (raid[name] and raid[name].subgroup) or 0
+		return (name and raid[name] and raid[name].subgroup) or 0
 	end
 
 	function DBM:GetRaidClass(name)
 		name = name or UnitName("player")
-		return (raid[name] and raid[name].class) or "UNKNOWN"
+		return (name and raid[name] and raid[name].class) or "UNKNOWN"
 	end
 
 	function DBM:GetRaidUnitId(name)
 		name = name or UnitName("player")
-		return (raid[name] and raid[name].id) or "none"
+		return (name and raid[name] and raid[name].id) or "none"
 	end
 end
 
