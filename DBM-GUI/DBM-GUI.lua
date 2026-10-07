@@ -609,8 +609,6 @@ function ListFrameButtonsPrototype:CreateCategory(frame, parent)
 		DBM:AddMsg(debugstack())
 		return false
 	elseif self:IsPresent(frame.name) then
-		DBM:AddMsg("Frame ("..frame.name..") already exists")
-		DBM:AddMsg(debugstack())
 		return false
 	end
 

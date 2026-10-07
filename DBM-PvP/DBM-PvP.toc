@@ -1,12 +1,12 @@
-﻿## Interface: 30300
+## Interface: 30300
 ## Title:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0PvP|r
 ## Title-deDE:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0PvP|r
 ## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Поля Боя|r
 ## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0PvP|r
 ## Title-zhCN:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0战场|r
 ## Title-koKR:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0전장|r
-## Title-esES:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Batallas|r
-## Title-esMX:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Batallas|r
+## Title-esES:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0JcJ|r
+## Title-esMX:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0JcJ|r
 ## Author: Nitram/Tandanu
 ## LoadOnDemand: 1
 ## RequiredDeps: DBM-Core
@@ -26,8 +26,8 @@
 ## X-DBM-Mod-Name-ruRU: Игрок против игрока
 ## X-DBM-Mod-Name-zhTW: PvP
 ## X-DBM-Mod-Name-koKR: 전장 및 아카본
-## X-DBM-Mod-Name-esES: Campos de Batallas
-## X-DBM-Mod-Name-esMX: Campos de Batallas
+## X-DBM-Mod-Name-esES: JcJ
+## X-DBM-Mod-Name-esMX: JcJ
 ## X-DBM-Mod-Sort: 200
 --## X-DBM-Mod-LoadZoneID: 462,444,402,541,483
 ## X-DBM-Mod-LoadZone: Arathi Basin,Warsong Gulch,Alterac Valley,Eye of the Storm,Isle of Conquest
