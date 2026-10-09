@@ -1,4 +1,4 @@
-# 📋 Registro de Cambios — WoWPeru_DBM
+# 📋 Registro de Cambios — ProjectJaina_DBM
 
 ### [4.52-WP] — 2026-10-05
 - **Monorepositorio Unificado:** Agrupación formal de los 13 módulos de Deadly Boss Mods para WotLK 3.3.5a bajo un único control de versiones.

@@ -1,24 +1,24 @@
-# 🇵🇪 WoW Perú — Deadly Boss Mods (DBM Suite WotLK 3.3.5a)
+# 🇵🇪 Project Jaina — Deadly Boss Mods (DBM Suite WotLK 3.3.5a)
 
 **Versión de DBM:** 4.52 Release (Rev 4442)  
 **Autores Originales:** Tandanu & Nitram (DBM Development Team)  
-**Empaquetado y Hardening:** DarckRovert & WoW Perú Staff  
-**Servidor Destino:** [WoW Perú](https://wow-peru.lat/) — Reino Andino  
+**Empaquetado y Hardening:** DarckRovert & Project Jaina Staff  
+**Servidor Destino:** [Project Jaina](https://wow-peru.lat/) — Reino Andino  
 **Entorno de Ejecución:** World of Warcraft 3.3.5a (Build 12340) | Lua 5.1  
-**Repositorio Oficial:** [DarckRovert/WoWPeru_DBM](https://github.com/DarckRovert/WoWPeru_DBM)  
+**Repositorio Oficial:** [DarckRovert/ProjectJaina_DBM](https://github.com/DarckRovert/ProjectJaina_DBM)  
 
 ---
 
 [![WoW Client](https://img.shields.io/badge/WoW%20Client-3.3.5a%20(Build%2012340)-blue.svg)](https://wow-peru.lat/)
 [![Servidor](https://img.shields.io/badge/Servidor-WoW%20Perú-gold.svg)](https://wow-peru.lat/)
-[![Version](https://img.shields.io/badge/version-4.52--WP-brightgreen.svg)](https://github.com/DarckRovert/WoWPeru_DBM/releases)
+[![Version](https://img.shields.io/badge/version-4.52--WP-brightgreen.svg)](https://github.com/DarckRovert/ProjectJaina_DBM/releases)
 [![License: CC BY-NC-SA 3.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%203.0-orange.svg)](LICENSE)
 
 ---
 
 ## 🌟 Descripción General
 
-Este monorepositorio centraliza la suite completa y verificada de **Deadly Boss Mods (DBM)** para el cliente 3.3.5a de WoW Perú. Agrupa en una sola unidad de versionado los 13 módulos requeridos para todas las bandas, mazmorras y encuentros de WotLK.
+Este monorepositorio centraliza la suite completa y verificada de **Deadly Boss Mods (DBM)** para el cliente 3.3.5a de Project Jaina. Agrupa en una sola unidad de versionado los 13 módulos requeridos para todas las bandas, mazmorras y encuentros de WotLK.
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -32,7 +32,7 @@ Este monorepositorio centraliza la suite completa y verificada de **Deadly Boss 
 
 ---
 
-## 🛠️ Correcciones y Hardening Realizado por WoW Perú
+## 🛠️ Correcciones y Hardening Realizado por Project Jaina
 
 1. **Reparación Estructural de `DBM-Naxx`:**
    - Se eliminó la estructura redundante anidada (`DBM-Naxx/DBM-Naxx/DBM-Naxx.toc`) que causaba fallos de carga en clientes estándar al no detectar el archivo `.toc` en la raíz de la carpeta del addon.
@@ -77,7 +77,7 @@ Este monorepositorio centraliza la suite completa y verificada de **Deadly Boss 
 
 ## 📥 Instalación en el Cliente WoW
 
-Para instalar la suite en tu cliente WoW Perú:
+Para instalar la suite en tu cliente Project Jaina:
 1. Descarga el repositorio o release comprimido en `.zip`.
 2. Extrae las 13 carpetas directamente dentro del directorio:
    ```

@@ -1,4 +1,4 @@
-﻿## Interface: 30300
+## Interface: 30300
 ## Title:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Eye of Eternity|r
 ## Title-deDE:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Eye of Eternity|r
 ## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Око Вечности|r
@@ -22,7 +22,7 @@
 ## X-DBM-Mod-Name-esES: El Ojo de la Eternidad
 ## X-DBM-Mod-Name-esMXS: El Ojo de la Eternidad
 ## X-DBM-Mod-Sort: 5
---## X-DBM-Mod-LoadZoneID: 528
+### X-DBM-Mod-LoadZoneID: 528
 ## X-DBM-Mod-LoadZone: The Eye of Eternity
 ## X-DBM-Mod-LoadZone-frFR: L'Œil de l'éternité
 ## X-DBM-Mod-LoadZone-deDE: Das Auge der Ewigkeit

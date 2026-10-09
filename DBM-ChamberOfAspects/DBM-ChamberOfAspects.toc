@@ -1,4 +1,4 @@
-﻿## Interface: 30300
+## Interface: 30300
 ## Title:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Chamber of Aspects|r
 ## Title-deDE:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Kammer der Aspekte|r
 ## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Палата Аспектов|r
@@ -29,7 +29,7 @@
 ## X-DBM-Mod-Name-esES: Cámara de los Aspectos
 ## X-DBM-Mod-Name-esMX: Cámara de los Aspectos
 ## X-DBM-Mod-Sort: 1
---## X-DBM-Mod-LoadZoneID: 532,610
+### X-DBM-Mod-LoadZoneID: 532,610
 ## X-DBM-Mod-LoadZone: The Obsidian Sanctum,The Ruby Sanctum
 ## X-DBM-Mod-LoadZone-deDE: Das Obsidiansanktum,Das Rubinsanktum
 ## X-DBM-Mod-LoadZone-ruRU: Обсидиановое святилище,Рубиновое святилище
