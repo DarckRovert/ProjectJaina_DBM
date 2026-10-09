@@ -3,14 +3,14 @@
 **Versión de DBM:** 4.52 Release (Rev 4442)  
 **Autores Originales:** Tandanu & Nitram (DBM Development Team)  
 **Empaquetado y Hardening:** DarckRovert & Project Jaina Staff  
-**Servidor Destino:** [Project Jaina](https://wow-peru.lat/) — Reino Andino  
+**Servidor Destino:** [Project Jaina](https://darckrovert.github.io/ProjectJaina_Web/) — Theramore  
 **Entorno de Ejecución:** World of Warcraft 3.3.5a (Build 12340) | Lua 5.1  
 **Repositorio Oficial:** [DarckRovert/ProjectJaina_DBM](https://github.com/DarckRovert/ProjectJaina_DBM)  
 
 ---
 
-[![WoW Client](https://img.shields.io/badge/WoW%20Client-3.3.5a%20(Build%2012340)-blue.svg)](https://wow-peru.lat/)
-[![Servidor](https://img.shields.io/badge/Servidor-WoW%20Perú-gold.svg)](https://wow-peru.lat/)
+[![WoW Client](https://img.shields.io/badge/WoW%20Client-3.3.5a%20(Build%2012340)-blue.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
+[![Servidor](https://img.shields.io/badge/Servidor-WoW%20Perú-gold.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
 [![Version](https://img.shields.io/badge/version-4.52--WP-brightgreen.svg)](https://github.com/DarckRovert/ProjectJaina_DBM/releases)
 [![License: CC BY-NC-SA 3.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%203.0-orange.svg)](LICENSE)
 

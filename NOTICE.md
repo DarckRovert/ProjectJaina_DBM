@@ -1,6 +1,6 @@
 # Aviso Legal y Créditos de Código de Terceros — ProjectJaina_DBM
 
-Este repositorio monorepo forma parte del catálogo comunitario de soporte para el ecosistema **Project Jaina - Reino Andino**.
+Este repositorio monorepo forma parte del catálogo comunitario de soporte para el ecosistema **Project Jaina - Theramore**.
 Agrupa y empaqueta la suite completa de **Deadly Boss Mods (DBM) v4.52 Release (Rev 4442)** para el cliente World of Warcraft 3.3.5a (Build 12340).
 
 ---
@@ -16,7 +16,7 @@ Agrupa y empaqueta la suite completa de **Deadly Boss Mods (DBM) v4.52 Release (
 ## 2. Términos de Distribución y Alcance Comunitario
 
 1. Project Jaina **no reclama titularidad** sobre el código base de Deadly Boss Mods ni sus módulos de banda/mazmorra.
-2. La distribución en este repositorio tiene fines estrictamente **no comerciales**, pedagógicos y de preservación comunitaria para jugadores del Reino Andino.
+2. La distribución en este repositorio tiene fines estrictamente **no comerciales**, pedagógicos y de preservación comunitaria para jugadores del Theramore.
 3. El paquete ha sido saneado por el equipo técnico de Project Jaina (corrección de empaquetado anidado defectuoso en `DBM-Naxx`, verificación de rutas de assets y compatibilidad UTF-8).
 
 ---

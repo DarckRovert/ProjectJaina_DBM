@@ -1,7 +1,7 @@
 # 🔌 Especificación Técnica y API — ProjectJaina_DBM
 
 [![GitHub](https://img.shields.io/badge/GitHub-DarckRovert%2FProjectJaina_DBM-black?logo=github)](https://github.com/DarckRovert/ProjectJaina_DBM)
-[![Ecosistema](https://img.shields.io/badge/Ecosistema-WoW%20Per%C3%BA%203.3.5a-gold.svg)](https://wow-peru.lat/)
+[![Ecosistema](https://img.shields.io/badge/Ecosistema-WoW%20Per%C3%BA%203.3.5a-gold.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
 
 ## 📌 Resumen Arquitectónico
 Monorepositorio unificado de Deadly Boss Mods con 13 módulos completos para todas las bandas y mazmorras de WotLK, desanidado, estabilizado y con advertencias de sonido sincronizadas.
