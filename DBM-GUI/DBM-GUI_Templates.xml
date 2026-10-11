@@ -531,14 +531,15 @@
 										self:SetValue(0)
 										self.offset = 0	
 									</OnLoad>
-									<OnVerticalScroll>
-										self:SetValue(offset);
-										self.offset = floor((offset / 10) + 0.5)
-									</OnVerticalScroll>
 								</Scripts>
 							</Slider>
 						</Frames>
 						<Scripts>
+							<OnVerticalScroll>
+								local scrollbar = getglobal(self:GetName().."ScrollBar")
+								scrollbar:SetValue(offset)
+								self.offset = floor((offset / 10) + 0.5)
+							</OnVerticalScroll>
 							<OnMouseWheel>
 								local scrollBar = getglobal(self:GetName() .. "ScrollBar")
 								if ( arg1 > 0 ) then
