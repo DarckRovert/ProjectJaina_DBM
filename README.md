@@ -14,9 +14,9 @@
 ---
 
 [![WoW Client](https://img.shields.io/badge/WoW%20Client-3.3.5a%20(Build%2012340)-blue.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
-[![Servidor](https://img.shields.io/badge/Servidor-WoW%20Perú-gold.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
+[![Servidor](https://img.shields.io/badge/Server-Project%20JAIna-00ccff.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
 [![Version](https://img.shields.io/badge/version-4.52--Jaina-brightgreen.svg)](https://github.com/DarckRovert/ProjectJaina_DBM/releases)
-[![License: CC BY-NC-SA 3.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%203.0-orange.svg)](LICENSE)
+[![License: CC BY-NC-SA 3.0](https://img.shields.io/badge/License-LGPL--2.1-blue.svg)](LICENSE)
 
 ---
 
