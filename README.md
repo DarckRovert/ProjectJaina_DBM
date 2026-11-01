@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/DarckRovert/ProjectJaina_Web/main/images/project_jaina_official_logo.jpg" alt="Project JAIna Official Crest" width="180">
+</p>
+
 # 🇵🇪 Project Jaina — Deadly Boss Mods (DBM Suite WotLK 3.3.5a)
 
 **Versión de DBM:** 4.52 Release (Rev 4442)  
