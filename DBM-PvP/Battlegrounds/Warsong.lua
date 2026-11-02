@@ -1,4 +1,4 @@
-﻿-- Warsong mod v3.0
+-- Warsong mod v3.0
 -- rewrite by Nitram and Tandanu
 --
 -- thanks to LeoLeal, DiabloHu and Са°ЧТВ
@@ -22,7 +22,8 @@ Warsong:RegisterEvents(
 	"CHAT_MSG_BG_SYSTEM_ALLIANCE",
 	"CHAT_MSG_BG_SYSTEM_HORDE",
 	"CHAT_MSG_BG_SYSTEM_NEUTRAL",
-	"UPDATE_BATTLEFIELD_SCORE"
+	"UPDATE_BATTLEFIELD_SCORE",
+	"UPDATE_WORLD_STATES"
 )
 
 local startTimer = Warsong:NewTimer(62, "TimerStart")
@@ -31,6 +32,7 @@ local flagTimer = Warsong:NewTimer(23, "TimerFlag", "Interface\\Icons\\INV_Banne
 Warsong:AddBoolOption("ShowFlagCarrier", true, nil, function()
 	if Warsong.Options.ShowFlagCarrier and bgzone then
 		Warsong:ShowFlagCarrier()
+		Warsong:CreateFlagCarrierButton()
 	else
 		Warsong:HideFlagCarrier()
 	end	
@@ -46,8 +48,12 @@ do
 				Warsong:CreateFlagCarrierButton()
 			end
 
-			Warsong.FlagCarrierFrame1Text:SetText("")
-			Warsong.FlagCarrierFrame2Text:SetText("")
+			if Warsong.FlagCarrierFrame1Text then
+				Warsong.FlagCarrierFrame1Text:SetText("")
+			end
+			if Warsong.FlagCarrierFrame2Text then
+				Warsong.FlagCarrierFrame2Text:SetText("")
+			end
 			FlagCarrier[1] = nil
 			FlagCarrier[2] = nil
 
@@ -62,6 +68,13 @@ do
 	Warsong.ZONE_CHANGED_NEW_AREA = WSG_Initialize
 end
 
+function Warsong:UPDATE_WORLD_STATES()
+	if bgzone and Warsong.Options.ShowFlagCarrier then
+		self:ShowFlagCarrier()
+		self:CreateFlagCarrierButton()
+	end
+end
+
 function Warsong:CHAT_MSG_BG_SYSTEM_NEUTRAL(arg1)
 	if not bgzone then return end
 	if arg1 == L.BgStart60 then
@@ -71,68 +84,85 @@ function Warsong:CHAT_MSG_BG_SYSTEM_NEUTRAL(arg1)
 	end
 end
 
-
 function Warsong:ShowFlagCarrier()
 	if not Warsong.Options.ShowFlagCarrier then return end
-	if AlwaysUpFrame3DynamicIconButton and AlwaysUpFrame3DynamicIconButton then
-		if not self.FlagCarrierFrame1 then
-			self.FlagCarrierFrame1 = CreateFrame("Frame", nil, AlwaysUpFrame2DynamicIconButton)
-			self.FlagCarrierFrame1:SetHeight(10)
-			self.FlagCarrierFrame1:SetWidth(100)
-			self.FlagCarrierFrame1:SetPoint("LEFT", "AlwaysUpFrame2DynamicIconButton", "RIGHT", 4, 0)
-			self.FlagCarrierFrame1Text = self.FlagCarrierFrame1:CreateFontString(nil, nil, "GameFontNormalSmall")
-			self.FlagCarrierFrame1Text:SetAllPoints(self.FlagCarrierFrame1)
-			self.FlagCarrierFrame1Text:SetJustifyH("LEFT")
-		end
-		if not self.FlagCarrierFrame2 then
-			self.FlagCarrierFrame2 = CreateFrame("Frame", nil, AlwaysUpFrame3DynamicIconButton)
-			self.FlagCarrierFrame2:SetHeight(10)
-			self.FlagCarrierFrame2:SetWidth(100)
-			self.FlagCarrierFrame2:SetPoint("LEFT", "AlwaysUpFrame3DynamicIconButton", "RIGHT", 4, 0)
-			self.FlagCarrierFrame2Text= self.FlagCarrierFrame2:CreateFontString(nil, nil, "GameFontNormalSmall")
-			self.FlagCarrierFrame2Text:SetAllPoints(self.FlagCarrierFrame2)
-			self.FlagCarrierFrame2Text:SetJustifyH("LEFT")
-		end
-		self.FlagCarrierFrame1:Show()		
-		self.FlagCarrierFrame2:Show()
+	local icon1 = _G["AlwaysUpFrame2DynamicIconButton"]
+	local icon2 = _G["AlwaysUpFrame3DynamicIconButton"]
+	if icon1 and icon2 then
+		pcall(function()
+			if not self.FlagCarrierFrame1 then
+				self.FlagCarrierFrame1 = CreateFrame("Frame", nil, icon1)
+				self.FlagCarrierFrame1:SetHeight(10)
+				self.FlagCarrierFrame1:SetWidth(100)
+				self.FlagCarrierFrame1:SetPoint("LEFT", icon1, "RIGHT", 4, 0)
+				self.FlagCarrierFrame1Text = self.FlagCarrierFrame1:CreateFontString(nil, nil, "GameFontNormalSmall")
+				self.FlagCarrierFrame1Text:SetAllPoints(self.FlagCarrierFrame1)
+				self.FlagCarrierFrame1Text:SetJustifyH("LEFT")
+			end
+			if not self.FlagCarrierFrame2 then
+				self.FlagCarrierFrame2 = CreateFrame("Frame", nil, icon2)
+				self.FlagCarrierFrame2:SetHeight(10)
+				self.FlagCarrierFrame2:SetWidth(100)
+				self.FlagCarrierFrame2:SetPoint("LEFT", icon2, "RIGHT", 4, 0)
+				self.FlagCarrierFrame2Text = self.FlagCarrierFrame2:CreateFontString(nil, nil, "GameFontNormalSmall")
+				self.FlagCarrierFrame2Text:SetAllPoints(self.FlagCarrierFrame2)
+				self.FlagCarrierFrame2Text:SetJustifyH("LEFT")
+			end
+			if self.FlagCarrierFrame1 then self.FlagCarrierFrame1:Show() end		
+			if self.FlagCarrierFrame2 then self.FlagCarrierFrame2:Show() end
+		end)
 	end
 end
 
 function Warsong:CreateFlagCarrierButton()
 	if not Warsong.Options.ShowFlagCarrier then return end
-	if not self.FlagCarrierFrame1Button then
-		self.FlagCarrierFrame1Button = CreateFrame("Button", nil, nil, "SecureActionButtonTemplate")
-		self.FlagCarrierFrame1Button:SetHeight(15)
-		self.FlagCarrierFrame1Button:SetWidth(150)
-		self.FlagCarrierFrame1Button:SetAttribute("type", "macro")
-		self.FlagCarrierFrame1Button:SetPoint("LEFT", "AlwaysUpFrame2", "RIGHT", 28, 4)
+	local frame1 = _G["AlwaysUpFrame2"]
+	local frame2 = _G["AlwaysUpFrame3"]
+	if frame1 and frame2 then
+		pcall(function()
+			if not self.FlagCarrierFrame1Button then
+				self.FlagCarrierFrame1Button = CreateFrame("Button", nil, UIParent, "SecureActionButtonTemplate")
+				self.FlagCarrierFrame1Button:SetHeight(15)
+				self.FlagCarrierFrame1Button:SetWidth(150)
+				self.FlagCarrierFrame1Button:SetAttribute("type", "macro")
+				self.FlagCarrierFrame1Button:SetPoint("LEFT", frame1, "RIGHT", 28, 4)
+			end
+			if not self.FlagCarrierFrame2Button then
+				self.FlagCarrierFrame2Button = CreateFrame("Button", nil, UIParent, "SecureActionButtonTemplate")
+				self.FlagCarrierFrame2Button:SetHeight(15)
+				self.FlagCarrierFrame2Button:SetWidth(150)
+				self.FlagCarrierFrame2Button:SetAttribute("type", "macro")
+				self.FlagCarrierFrame2Button:SetPoint("LEFT", frame2, "RIGHT", 28, 4)
+			end
+			if self.FlagCarrierFrame1Button then self.FlagCarrierFrame1Button:Show() end		
+			if self.FlagCarrierFrame2Button then self.FlagCarrierFrame2Button:Show() end
+		end)
 	end
-	if not self.FlagCarrierFrame2Button then
-		self.FlagCarrierFrame2Button = CreateFrame("Button", nil, nil, "SecureActionButtonTemplate")
-		self.FlagCarrierFrame2Button:SetHeight(15)
-		self.FlagCarrierFrame2Button:SetWidth(150)
-		self.FlagCarrierFrame2Button:SetAttribute("type", "macro")
-		self.FlagCarrierFrame2Button:SetPoint("LEFT", "AlwaysUpFrame3", "RIGHT", 28, 4)
-	end
-	self.FlagCarrierFrame1Button:Show()		
-	self.FlagCarrierFrame2Button:Show()
 end
 
 function Warsong:HideFlagCarrier()
-	if self.FlagCarrierFrame1 and self.FlagCarrierFrame2 then
+	if self.FlagCarrierFrame1 then
 		self.FlagCarrierFrame1:Hide()
-		self.FlagCarrierFrame2:Hide()
-		FlagCarrier[1] = nil
-		FlagCarrier[2] = nil
 	end
+	if self.FlagCarrierFrame2 then
+		self.FlagCarrierFrame2:Hide()
+	end
+	if self.FlagCarrierFrame1Button then
+		self.FlagCarrierFrame1Button:Hide()
+	end
+	if self.FlagCarrierFrame2Button then
+		self.FlagCarrierFrame2Button:Hide()
+	end
+	FlagCarrier[1] = nil
+	FlagCarrier[2] = nil
 end
 
 function Warsong:CheckFlagCarrier()
 	if not UnitAffectingCombat("player") then
-		if FlagCarrier[1] and self.FlagCarrierFrame1 then
+		if FlagCarrier[1] and self.FlagCarrierFrame1Button then
 			self.FlagCarrierFrame1Button:SetAttribute("macrotext", "/targetexact " .. FlagCarrier[1])
 		end
-		if FlagCarrier[2] and self.FlagCarrierFrame2 then
+		if FlagCarrier[2] and self.FlagCarrierFrame2Button then
 			self.FlagCarrierFrame2Button:SetAttribute("macrotext", "/targetexact " .. FlagCarrier[2])
 		end
 	end
@@ -149,11 +179,11 @@ do
 					name = string.match(name, "([^%-]+)%-.+")
 				end
 				if name == carrier then
-					if faction == 0 then
+					if faction == 0 and self.FlagCarrierFrame2Text then
 						self.FlagCarrierFrame2Text:SetTextColor(RAID_CLASS_COLORS[class].r, 
 											RAID_CLASS_COLORS[class].g, 
 											RAID_CLASS_COLORS[class].b)
-					elseif faction == 1 then
+					elseif faction == 1 and self.FlagCarrierFrame1Text then
 						self.FlagCarrierFrame1Text:SetTextColor(RAID_CLASS_COLORS[class].r, 
 											RAID_CLASS_COLORS[class].g, 
 											RAID_CLASS_COLORS[class].b)
@@ -185,76 +215,97 @@ end
 do
 	local function updateflagcarrier(self, event, arg1)
 		if not self.Options.ShowFlagCarrier then return end
-		if self.FlagCarrierFrame1 and self.FlagCarrierFrame2 then
-			if string.match(arg1, L.ExprFlagPickUp) then
-				local sArg1, sArg2 =  string.match(arg1, L.ExprFlagPickUp)
-				local mSide, mNick
-				if( GetLocale() == "deDE") then
-					mSide = sArg2
-					mNick = sArg1
-				else
-					mSide = sArg1
-					mNick = sArg2
-				end
+		if not self.FlagCarrierFrame1 or not self.FlagCarrierFrame2 or not self.FlagCarrierFrame1Button or not self.FlagCarrierFrame2Button then
+			self:ShowFlagCarrier()
+			self:CreateFlagCarrierButton()
+		end
+		if string.match(arg1, L.ExprFlagPickUp) then
+			local sArg1, sArg2 =  string.match(arg1, L.ExprFlagPickUp)
+			local mSide, mNick
+			if( GetLocale() == "deDE") then
+				mSide = sArg2
+				mNick = sArg1
+			else
+				mSide = sArg1
+				mNick = sArg2
+			end
+		
+			if( GetLocale() == "koKR") then
+				mSide = sArg2
+				mNick = sArg1
+			end
 			
-				if( GetLocale() == "koKR") then
-					mSide = sArg2
-					mNick = sArg1
-				end
-				
-				if mSide == L.Alliance then
-					FlagCarrier[2] = mNick
+			if mSide == L.Alliance then
+				FlagCarrier[2] = mNick
+				if self.FlagCarrierFrame2Text then
 					self.FlagCarrierFrame2Text:SetText(mNick)
+				end
+				if self.FlagCarrierFrame2 then
 					self.FlagCarrierFrame2:Show()
-					self:ColorFlagCarrier(mNick)
-					if UnitAffectingCombat("player") then
-						if self.Options.ShowFlagCarrierErrorNote then
-							self:AddMsg(L.InfoErrorText)
-						end
-					else
+				end
+				self:ColorFlagCarrier(mNick)
+				if UnitAffectingCombat("player") then
+					if self.Options.ShowFlagCarrierErrorNote then
+						self:AddMsg(L.InfoErrorText)
+					end
+				else
+					if self.FlagCarrierFrame2Button then
 						self.FlagCarrierFrame2Button:SetAttribute( "macrotext", "/targetexact " .. mNick )
-					end					
+					end
+				end					
 
-				elseif mSide == L.Horde then
-					FlagCarrier[1] = mNick
+			elseif mSide == L.Horde then
+				FlagCarrier[1] = mNick
+				if self.FlagCarrierFrame1Text then
 					self.FlagCarrierFrame1Text:SetText(mNick)
+				end
+				if self.FlagCarrierFrame1 then
 					self.FlagCarrierFrame1:Show()
-					self:ColorFlagCarrier(mNick)
-					if UnitAffectingCombat("player") then
-						if self.Options.ShowFlagCarrierErrorNote then
-							self:AddMsg(L.InfoErrorText)
-						end
-					else
+				end
+				self:ColorFlagCarrier(mNick)
+				if UnitAffectingCombat("player") then
+					if self.Options.ShowFlagCarrierErrorNote then
+						self:AddMsg(L.InfoErrorText)
+					end
+				else
+					if self.FlagCarrierFrame1Button then
 						self.FlagCarrierFrame1Button:SetAttribute( "macrotext", "/targetexact " .. mNick )
 					end
 				end
-				
-			elseif string.match(arg1, L.ExprFlagReturn) then
-				if( GetLocale() == "ruRU") then
-					local _, _, mNick, mSide =  string.find(arg1, L.ExprFlagReturn)
-				else
-					local _, _, mSide, mNick =  string.find(arg1, L.ExprFlagReturn)
-				end
-				
-				if mSide == L.Alliance then
+			end
+			
+		elseif string.match(arg1, L.ExprFlagReturn) then
+			local mNick, mSide
+			if( GetLocale() == "ruRU") then
+				_, _, mNick, mSide =  string.find(arg1, L.ExprFlagReturn)
+			else
+				_, _, mSide, mNick =  string.find(arg1, L.ExprFlagReturn)
+			end
+			
+			if mSide == L.Alliance then
+				if self.FlagCarrierFrame2 then
 					self.FlagCarrierFrame2:Hide()
-					FlagCarrier[2] = nil
-
-				elseif mSide == L.Horde then
-					self.FlagCarrierFrame1:Hide()
-					FlagCarrier[1] = nil
 				end
+				FlagCarrier[2] = nil
+
+			elseif mSide == L.Horde then
+				if self.FlagCarrierFrame1 then
+					self.FlagCarrierFrame1:Hide()
+				end
+				FlagCarrier[1] = nil
 			end
 		end
 		if string.match(arg1, L.ExprFlagCaptured) then
 			flagTimer:Start()
 		
-			if self.FlagCarrierFrame1 and self.FlagCarrierFrame2 then
+			if self.FlagCarrierFrame1 then
 				self.FlagCarrierFrame1:Hide()
-				self.FlagCarrierFrame2:Hide()
-				FlagCarrier[1] = nil
-				FlagCarrier[2] = nil
 			end
+			if self.FlagCarrierFrame2 then
+				self.FlagCarrierFrame2:Hide()
+			end
+			FlagCarrier[1] = nil
+			FlagCarrier[2] = nil
 		end
 	end
 	function Warsong:CHAT_MSG_BG_SYSTEM_ALLIANCE(...)
@@ -264,6 +315,3 @@ do
 		updateflagcarrier(self, "CHAT_MSG_BG_SYSTEM_HORDE", ...)
 	end
 end
-
-
-
