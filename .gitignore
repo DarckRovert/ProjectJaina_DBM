@@ -6,3 +6,7 @@ Thumbs.db
 desktop.ini
 *.swp
 *.tmp
+
+# Python test cache
+__pycache__/
+*.py[cod]
